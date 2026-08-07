@@ -1,0 +1,28 @@
+export function ConceptBanner() {
+  return (
+    <div className="border-b border-safety-yellow/40 bg-asphalt-darker px-4 py-2.5 text-center text-chalk shadow-md">
+      <p className="mx-auto max-w-4xl text-balance text-xs font-semibold tracking-wide sm:text-sm">
+        Concept site by{" "}
+        <a
+          href="https://quengadesigns.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-safety-yellow decoration-2 underline-offset-2 hover:text-safety-yellow"
+        >
+          Quenga Designs
+        </a>{" "}
+        &mdash; this is an unsolicited design demo, not Orland Automotive Oil &amp;
+        Lube&rsquo;s official website. For the real shop, visit their{" "}
+        <a
+          href="https://www.facebook.com/OTownAuto/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-safety-yellow decoration-2 underline-offset-2 hover:text-safety-yellow"
+        >
+          Facebook page
+        </a>
+        .
+      </p>
+    </div>
+  );
+}

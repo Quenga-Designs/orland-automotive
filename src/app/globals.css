@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --color-asphalt: #1b1d1f;
+  --color-asphalt-darker: #101112;
+  --color-panel: #232628;
+  --color-chalk: #f2f0ea;
+  --color-chalk-dim: #cbc7bd;
+  --color-safety-yellow: #f4b400;
+  --color-safety-yellow-light: #ffd35c;
+  --color-oil: #2e2a22;
+  --color-line: rgba(242, 240, 234, 0.12);
+}
+
+@theme inline {
+  --color-asphalt: var(--color-asphalt);
+  --color-asphalt-darker: var(--color-asphalt-darker);
+  --color-panel: var(--color-panel);
+  --color-chalk: var(--color-chalk);
+  --color-chalk-dim: var(--color-chalk-dim);
+  --color-safety-yellow: var(--color-safety-yellow);
+  --color-safety-yellow-light: var(--color-safety-yellow-light);
+  --color-oil: var(--color-oil);
+  --color-line: var(--color-line);
+  --font-display: var(--font-teko);
+  --font-body: var(--font-inter);
+}
+
+body {
+  background: var(--color-asphalt);
+  color: var(--color-chalk);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-safety-yellow);
+  color: var(--color-asphalt-darker);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Brushed-metal grain, used behind hero/section panels. */
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Checkered-flag divider — quick-service/racing motif, used sparingly. */
+.checker-stripe {
+  height: 10px;
+  background-image:
+    linear-gradient(45deg, var(--color-chalk) 25%, transparent 25%, transparent 75%, var(--color-chalk) 75%),
+    linear-gradient(45deg, var(--color-chalk) 25%, transparent 25%, transparent 75%, var(--color-chalk) 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  background-color: var(--color-asphalt-darker);
+}
+
+.gauge-glow {
+  text-shadow: 0 0 18px rgba(244, 180, 0, 0.35);
+}
