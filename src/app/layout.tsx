@@ -40,6 +40,7 @@ export default function RootLayout({
         </div>
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <script src="/qd-beacon.js" defer></script>
       </body>
     </html>
   );

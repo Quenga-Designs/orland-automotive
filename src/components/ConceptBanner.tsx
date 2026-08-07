@@ -4,7 +4,7 @@ export function ConceptBanner() {
       <p className="mx-auto max-w-4xl text-balance text-xs font-semibold tracking-wide sm:text-sm">
         Concept site by{" "}
         <a
-          href="https://quengadesigns.dev"
+          href="https://quengadesigns.dev/demo?from=orland-automotive"
           target="_blank"
           rel="noopener"
           className="underline decoration-safety-yellow decoration-2 underline-offset-2 hover:text-safety-yellow"

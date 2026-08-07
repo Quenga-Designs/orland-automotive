@@ -74,7 +74,7 @@ export function SiteFooter() {
           <p>
             &copy; <Year /> This is a concept demo built by{" "}
             <a
-              href="https://quengadesigns.dev"
+              href="https://quengadesigns.dev/demo?from=orland-automotive"
               target="_blank"
               rel="noopener"
               className="underline hover:text-safety-yellow"
