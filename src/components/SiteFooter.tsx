@@ -76,7 +76,7 @@ export function SiteFooter() {
             <a
               href="https://quengadesigns.dev"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="underline hover:text-safety-yellow"
             >
               Quenga Designs

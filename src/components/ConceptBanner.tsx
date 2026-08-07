@@ -6,7 +6,7 @@ export function ConceptBanner() {
         <a
           href="https://quengadesigns.dev"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           className="underline decoration-safety-yellow decoration-2 underline-offset-2 hover:text-safety-yellow"
         >
           Quenga Designs
