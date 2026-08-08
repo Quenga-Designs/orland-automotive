@@ -37,7 +37,11 @@
     var slug = window.location.hostname.split(".")[0];
     if (!slug) return;
 
-    var payload = JSON.stringify({ slug: slug, referrer: document.referrer || null });
+    var referrerHostname = null;
+    try {
+      referrerHostname = document.referrer ? new URL(document.referrer).hostname : null;
+    } catch (e) {}
+    var payload = JSON.stringify({ slug: slug, referrer: referrerHostname });
 
     // text/plain keeps this a CORS-simple request: sendBeacon cannot survive a
     // preflight, and the route parses the body as JSON regardless.
