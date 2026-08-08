@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "repo": "orland-automotive",
+  "generatedAt": "2026-08-08T17:24:21Z",
+  "tier": "deep",
+  "tierReason": "deep (cohort)",
+  "visibility": "public",
+  "coverage": {
+    "filesTotal": 12,
+    "filesRead": 12
+  },
+  "health": {
+    "build": "pass"
+  },
+  "counts": {
+    "p0": 0,
+    "p1": 1,
+    "p2": 3,
+    "p3": 1
+  },
+  "delta": {
+    "newSinceLastRun": [
+      "446d74d65d1eacc7",
+      "c6fe041b4716a8cc",
+      "10ca934f907807a2"
+    ],
+    "fixedSinceLastRun": [
+      "db10aba9e05ce885",
+      "ac423926840b03eb"
+    ]
+  },
+  "findings": [
+    {
+      "severity": "P2",
+      "category": "security",
+      "file": "(shared scaffold)",
+      "claim": "[redacted - see private audit]",
+      "id": "446d74d65d1eacc7"
+    },
+    {
+      "severity": "P1",
+      "category": "correctness",
+      "file": "(shared scaffold)",
+      "line": null,
+      "claim": "The disclosure banner's required link to the real business's actual web presence is only implemented in 2 of 6 sampled repos.",
+      "evidence": "chicosbarbershop and orland-automotive link to the real Facebook page. tacoselcentenario links to a phone number instead. iceburgie, houseoffades, royaltyhair have no real-business link at all — only a link back to quengadesigns.dev/demo.",
+      "fix": "Standardize ConceptBanner.tsx to always link the best available real-presence signal (Facebook/Yelp/Google) from site-data.ts, falling back to phone only when no web presence exists. Sweep all ~50 sites.",
+      "verified": true,
+      "id": "0c31a49d68d9802b"
+    },
+    {
+      "severity": "P3",
+      "category": "security",
+      "file": "(shared scaffold)",
+      "claim": "[redacted - see private audit]",
+      "id": "c6fe041b4716a8cc"
+    },
+    {
+      "severity": "P2",
+      "category": "security",
+      "file": ".gitignore",
+      "claim": "[redacted - see private audit]",
+      "id": "10ca934f907807a2"
+    },
+    {
+      "severity": "P2",
+      "category": "ops",
+      "file": "src/lib/site-data.ts",
+      "line": 34,
+      "claim": "Publishes a named individual's identity (a manager's name) sourced from a third-party business aggregator rather than a primary/business-owned source, on a site that is unsolicited and whose source is now publicly visible on GitHub.",
+      "evidence": "site-data.ts comment confirms the name was verified via a Birdeye aggregator listing. This is the only repo in the batch naming a specific employee, as opposed to a sole owner-practitioner whose own booking page is the business itself.",
+      "fix": "Given the elevated exposure from this repo being public, consider whether naming a specific employee is necessary for the concept pitch, or re-confirm via a primary source before keeping it.",
+      "verified": true,
+      "id": "3ffb369a518f6648"
+    }
+  ],
+  "features": []
+}
