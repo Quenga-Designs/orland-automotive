@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repo": "orland-automotive",
-  "generatedAt": "2026-08-08T17:24:21Z",
+  "generatedAt": "2026-08-09T03:53:19Z",
   "tier": "deep",
   "tierReason": "deep (cohort)",
   "visibility": "public",
@@ -14,19 +14,15 @@
   },
   "counts": {
     "p0": 0,
-    "p1": 1,
+    "p1": 0,
     "p2": 3,
-    "p3": 1
+    "p3": 0
   },
   "delta": {
-    "newSinceLastRun": [
-      "446d74d65d1eacc7",
-      "c6fe041b4716a8cc",
-      "10ca934f907807a2"
-    ],
+    "newSinceLastRun": [],
     "fixedSinceLastRun": [
-      "db10aba9e05ce885",
-      "ac423926840b03eb"
+      "0c31a49d68d9802b",
+      "c6fe041b4716a8cc"
     ]
   },
   "findings": [
@@ -36,24 +32,6 @@
       "file": "(shared scaffold)",
       "claim": "[redacted - see private audit]",
       "id": "446d74d65d1eacc7"
-    },
-    {
-      "severity": "P1",
-      "category": "correctness",
-      "file": "(shared scaffold)",
-      "line": null,
-      "claim": "The disclosure banner's required link to the real business's actual web presence is only implemented in 2 of 6 sampled repos.",
-      "evidence": "chicosbarbershop and orland-automotive link to the real Facebook page. tacoselcentenario links to a phone number instead. iceburgie, houseoffades, royaltyhair have no real-business link at all — only a link back to quengadesigns.dev/demo.",
-      "fix": "Standardize ConceptBanner.tsx to always link the best available real-presence signal (Facebook/Yelp/Google) from site-data.ts, falling back to phone only when no web presence exists. Sweep all ~50 sites.",
-      "verified": true,
-      "id": "0c31a49d68d9802b"
-    },
-    {
-      "severity": "P3",
-      "category": "security",
-      "file": "(shared scaffold)",
-      "claim": "[redacted - see private audit]",
-      "id": "c6fe041b4716a8cc"
     },
     {
       "severity": "P2",
