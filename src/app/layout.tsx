@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Teko, Inter } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 import { ConceptBanner } from "@/components/ConceptBanner";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -26,11 +27,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+// The per-request nonce CSP (src/proxy.ts) requires per-request rendering so
+// Next.js can stamp the current request's nonce onto its inline hydration
+// scripts. Static prerendering would bake nonce-less scripts at build time,
+// which a nonce + 'strict-dynamic' policy then blocks.
+export const dynamic = "force-dynamic";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <html lang="en" className={`${teko.variable} ${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-asphalt text-chalk">
@@ -40,7 +49,7 @@ export default function RootLayout({
         </div>
         <main className="flex-1">{children}</main>
         <SiteFooter />
-        <script src="/qd-beacon.js" defer></script>
+        <script src="/qd-beacon.js" defer nonce={nonce}></script>
       </body>
     </html>
   );

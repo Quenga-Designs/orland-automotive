@@ -38,7 +38,7 @@ export default function ServicesPage() {
           </ul>
 
           <p className="mt-8 text-sm text-chalk-dim/80">
-            Have something specific in mind? Call {business.phone} — {business.manager}
+            Have something specific in mind? Call {business.phone} — the team
             {" "}can tell you exactly what the shop offers.
           </p>
         </div>

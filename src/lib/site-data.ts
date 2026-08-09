@@ -30,8 +30,6 @@ export const business = {
   },
   // Verified via the BBB profile ("business started on 12/31/2021").
   establishedYear: 2021,
-  // Verified via the Birdeye aggregator listing.
-  manager: "Justin Krause",
   description:
     "Fast, honest oil changes and full auto repair for any make or model — foreign or domestic — right here in Orland.",
   tagline: "Quick in, quick out, done right.",

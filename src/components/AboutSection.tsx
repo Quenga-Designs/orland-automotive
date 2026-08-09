@@ -20,8 +20,8 @@ export function AboutSection() {
           </p>
           <p className="italic text-chalk/90">&ldquo;{business.tagline}&rdquo;</p>
           <p>
-            Managed by {business.manager}, the shop handles everything from a quick
-            lube to full-vehicle repair, right here in Orland.
+            The shop handles everything from a quick lube to full-vehicle
+            repair, right here in Orland.
           </p>
         </div>
       </div>

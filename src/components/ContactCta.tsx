@@ -12,8 +12,8 @@ export function ContactCta() {
             Swing by, or give us a call first.
           </h2>
           <p className="mt-3 max-w-xl text-chalk-dim">
-            Oil changes are walk-in — for anything bigger, call ahead and{" "}
-            {business.manager} can tell you what to expect.
+            Oil changes are walk-in — for anything bigger, call ahead and the
+            team can tell you what to expect.
           </p>
         </div>
         <a

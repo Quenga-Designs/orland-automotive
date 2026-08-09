@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repo": "orland-automotive",
-  "generatedAt": "2026-08-09T03:53:19Z",
+  "generatedAt": "2026-08-09T08:02:45Z",
   "tier": "deep",
   "tierReason": "deep (cohort)",
   "visibility": "public",
@@ -15,42 +15,17 @@
   "counts": {
     "p0": 0,
     "p1": 0,
-    "p2": 3,
+    "p2": 0,
     "p3": 0
   },
   "delta": {
     "newSinceLastRun": [],
     "fixedSinceLastRun": [
-      "0c31a49d68d9802b",
-      "c6fe041b4716a8cc"
+      "446d74d65d1eacc7",
+      "10ca934f907807a2",
+      "3ffb369a518f6648"
     ]
   },
-  "findings": [
-    {
-      "severity": "P2",
-      "category": "security",
-      "file": "(shared scaffold)",
-      "claim": "[redacted - see private audit]",
-      "id": "446d74d65d1eacc7"
-    },
-    {
-      "severity": "P2",
-      "category": "security",
-      "file": ".gitignore",
-      "claim": "[redacted - see private audit]",
-      "id": "10ca934f907807a2"
-    },
-    {
-      "severity": "P2",
-      "category": "ops",
-      "file": "src/lib/site-data.ts",
-      "line": 34,
-      "claim": "Publishes a named individual's identity (a manager's name) sourced from a third-party business aggregator rather than a primary/business-owned source, on a site that is unsolicited and whose source is now publicly visible on GitHub.",
-      "evidence": "site-data.ts comment confirms the name was verified via a Birdeye aggregator listing. This is the only repo in the batch naming a specific employee, as opposed to a sole owner-practitioner whose own booking page is the business itself.",
-      "fix": "Given the elevated exposure from this repo being public, consider whether naming a specific employee is necessary for the concept pitch, or re-confirm via a primary source before keeping it.",
-      "verified": true,
-      "id": "3ffb369a518f6648"
-    }
-  ],
+  "findings": [],
   "features": []
 }
