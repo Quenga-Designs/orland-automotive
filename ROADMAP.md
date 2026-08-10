@@ -1,12 +1,14 @@
 <!-- audit:start -->
-## Audit sweep — 2026-08-08
+## Audit sweep — 2026-08-10
 
-**Status:** 0 P0, 1 P1, 3 P2, 1 P3 open.
+**Status:** 0 P0, 0 P1, 0 P2, 2 P3 open.
 
 ### Recently shipped
-- ~~[redacted - see private audit]~~ ✅ Shipped 2026-08-08
-- ~~[redacted - see private audit]~~ ✅ Shipped 2026-08-08
+- ~~Security hardening: resolve all open P0/P1 findings~~ ✅ Shipped 2026-08-09 (nonce-based CSP, HSTS, X-Robots-Tag, broadened .gitignore, unverified name removed from working tree; 0 P0/P1/P2 since).
 
-### Proposed phase: Security hardening
-- Resolve all open P0/P1 findings from this sweep before new feature work.
+### Proposed phase: Dependency refresh
+- Apply the safe eslint-config-next / react / react-dom bumps flagged in this sweep.
+
+### Open item (public-repo history)
+- [redacted - see private audit] — see private audit for detail; low-severity, no action forced.
 <!-- audit:end -->

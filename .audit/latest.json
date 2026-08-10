@@ -1,31 +1,59 @@
 {
   "schemaVersion": 1,
   "repo": "orland-automotive",
-  "generatedAt": "2026-08-09T08:02:45Z",
+  "generatedAt": "2026-08-10T00:00:00Z",
   "tier": "deep",
-  "tierReason": "deep (cohort)",
+  "tierReason": "full portfolio deep-audit sweep, forced",
   "visibility": "public",
   "coverage": {
-    "filesTotal": 12,
-    "filesRead": 12
-  },
-  "health": {
-    "build": "pass"
-  },
-  "counts": {
-    "p0": 0,
-    "p1": 0,
-    "p2": 0,
-    "p3": 0
-  },
-  "delta": {
-    "newSinceLastRun": [],
-    "fixedSinceLastRun": [
-      "446d74d65d1eacc7",
-      "10ca934f907807a2",
-      "3ffb369a518f6648"
+    "filesTotal": 28,
+    "filesRead": 27,
+    "areasNotExamined": [
+      "package-lock.json (generated lockfile, not source)",
+      "Live-site QA (no browser tooling used this pass; Vercel CLI confirms latest deploy READY)",
+      "SonarCloud (no .env.local / SONAR_TOKEN present in repo — could not be verified, not claimed clean)"
     ]
   },
-  "findings": [],
+  "health": {
+    "ci": "none",
+    "build": "pass",
+    "deploy": {
+      "state": "READY",
+      "url": "https://orland-automotive-f90c6kq3b-quenga-designs-projects.vercel.app",
+      "checkedAt": "2026-08-10T00:00:00Z"
+    },
+    "sonar": null,
+    "deps": {
+      "outdatedMajors": 2,
+      "vulns": { "critical": 0, "high": 0, "moderate": 0, "low": 0 }
+    },
+    "supabase": null,
+    "liveQa": { "consoleErrors": null, "lighthouse": null }
+  },
+  "counts": { "p0": 0, "p1": 0, "p2": 0, "p3": 2 },
+  "delta": {
+    "newSinceLastRun": ["281da97a25927154", "e77f3553fec9291f"],
+    "fixedSinceLastRun": []
+  },
+  "findings": [
+    {
+      "id": "281da97a25927154",
+      "severity": "P3",
+      "category": "debt",
+      "file": "package.json",
+      "line": null,
+      "claim": "Dependency drift: eslint-config-next 16.2.10->16.3.0, react/react-dom 19.2.4->19.2.8, and @types/node 20.19.43->26.2.0 are available minor/patch/major bumps not yet applied; eslint 9.39.5->10.8.1 and typescript 5.9.3->7.0.2 majors are blocked by upstream peer ranges (eslint-plugin-react eslint<=9.7, typescript-eslint typescript<6.1.0)",
+      "evidence": "2026-08-10 `npm outdated`: @types/node 20.19.43 (latest 26.2.0), eslint 9.39.5 (latest 10.8.1), eslint-config-next 16.2.10 (latest 16.3.0), react/react-dom 19.2.4 (latest 19.2.8), typescript 5.9.3 (latest 7.0.2). `npm audit` clean (0 vulnerabilities, 435 deps).",
+      "fix": "Bump eslint-config-next and react/react-dom (safe). Evaluate typescript ->~6.0.x under the same ceiling that worked for sibling repos. Hold eslint at 9.x until eslint-config-next ships an eslint-10-compatible eslint-plugin-react.",
+      "verified": true
+    },
+    {
+      "id": "e77f3553fec9291f",
+      "severity": "P3",
+      "category": "security",
+      "file": "src/lib/site-data.ts",
+      "claim": "[redacted - see private audit]"
+    }
+  ],
   "features": []
 }
