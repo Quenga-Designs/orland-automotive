@@ -25,5 +25,7 @@
   },
   "overrides": {
     "postcss": "^8.5.10"
-  }
+  },
+  "license": "UNLICENSED",
+  "author": "Quenga Designs (Marcel L. Quenga)"
 }

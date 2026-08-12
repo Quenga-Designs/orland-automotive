@@ -1,3 +1,4 @@
+/* © 2026 Quenga Designs — All rights reserved. Proprietary; see LICENSE. Unauthorized copying or deployment prohibited. */
 import type { Metadata } from "next";
 import { Teko, Inter } from "next/font/google";
 import { headers } from "next/headers";
