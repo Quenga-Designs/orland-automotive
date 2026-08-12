@@ -19,6 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  other: { "qd-provenance": "qd-prov:orland-automotive:dab34766" },
   title: "Orland Automotive Oil & Lube — Concept Site (Not Official) | Quenga Designs",
   description:
     "An unsolicited concept redesign for Orland Automotive Oil & Lube in Orland, CA. Built as a design demo by Quenga Designs — not the shop's official website.",

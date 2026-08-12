@@ -55,3 +55,45 @@
     /* private-mode storage errors and the like — never surface */
   }
 })();
+
+/*
+ * Provenance tripwire.
+ *
+ * Every deployed Quenga Designs site carries a unique canary id in a
+ * <meta name="qd-provenance"> tag. If this code is ever found running on a
+ * host that ISN'T ours, it reports the canary + that host to the portal so
+ * the copy surfaces on the Code Alerts board. It reports ONLY that our code
+ * is live at hostname X — never anything about that site's visitors. On our
+ * own domains (and local/preview builds) it stays completely silent.
+ */
+(function () {
+  "use strict";
+  try {
+    var host = window.location.hostname;
+    if (/(^|\.)quengadesigns\.dev$/.test(host)) return;
+    if (/\.vercel\.app$/.test(host)) return;
+    if (host === "localhost" || host === "127.0.0.1" || host === "::1") return;
+
+    var meta = document.querySelector('meta[name="qd-provenance"]');
+    var canary = meta && meta.getAttribute("content");
+    if (!canary) return;
+
+    var PROV_KEY = "qd-prov-sent";
+    if (sessionStorage.getItem(PROV_KEY)) return;
+
+    var payload = JSON.stringify({
+      canary: canary,
+      host: host,
+      referrer: document.referrer || null,
+    });
+    var PROV_ENDPOINT = "https://quengadesigns.dev/api/provenance-ping";
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(PROV_ENDPOINT, new Blob([payload], { type: "text/plain" }));
+    } else {
+      fetch(PROV_ENDPOINT, { method: "POST", body: payload, keepalive: true }).catch(function () {});
+    }
+    sessionStorage.setItem(PROV_KEY, "1");
+  } catch (e) {
+    /* never surface */
+  }
+})();
