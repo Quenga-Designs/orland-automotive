@@ -1,17 +1,15 @@
 {
   "schemaVersion": 1,
   "repo": "orland-automotive",
-  "generatedAt": "2026-08-10T00:00:00Z",
+  "generatedAt": "2026-08-15T07:30:00Z",
   "tier": "deep",
-  "tierReason": "full portfolio deep-audit sweep, forced",
+  "tierReason": "full-portfolio every-file cycle 2026-08-13",
   "visibility": "public",
   "coverage": {
-    "filesTotal": 28,
-    "filesRead": 27,
+    "filesTotal": 29,
+    "filesRead": 28,
     "areasNotExamined": [
-      "package-lock.json (generated lockfile, not source)",
-      "Live-site QA (no browser tooling used this pass; Vercel CLI confirms latest deploy READY)",
-      "SonarCloud (no .env.local / SONAR_TOKEN present in repo — could not be verified, not claimed clean)"
+      "package-lock.json (lockfile, exempt)"
     ]
   },
   "health": {
@@ -19,32 +17,61 @@
     "build": "pass",
     "deploy": {
       "state": "READY",
-      "url": "https://orland-automotive-f90c6kq3b-quenga-designs-projects.vercel.app",
-      "checkedAt": "2026-08-10T00:00:00Z"
+      "url": "https://orland-automotive.quengadesigns.dev",
+      "checkedAt": "2026-08-15T07:30:00Z"
     },
-    "sonar": null,
+    "sonar": {
+      "open": "could not be verified (no SONAR_TOKEN)",
+      "blocker": null,
+      "critical": null
+    },
     "deps": {
-      "outdatedMajors": 2,
-      "vulns": { "critical": 0, "high": 0, "moderate": 0, "low": 0 }
+      "outdatedMajors": 3,
+      "vulns": {
+        "critical": 0,
+        "high": 1
+      },
+      "note": "eslint 9->10, typescript 5->7, @types/node 20->26 remain majors behind (hygiene only); nanoid high advisory has a fix available"
     },
     "supabase": null,
-    "liveQa": { "consoleErrors": null, "lighthouse": null }
+    "liveQa": {
+      "consoleErrors": 0,
+      "lighthouse": null
+    }
   },
-  "counts": { "p0": 0, "p1": 0, "p2": 0, "p3": 2 },
+  "counts": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 1,
+    "p3": 2
+  },
   "delta": {
-    "newSinceLastRun": ["281da97a25927154", "e77f3553fec9291f"],
+    "newSinceLastRun": [
+      "ebaf775b940082a3"
+    ],
     "fixedSinceLastRun": []
   },
   "findings": [
+    {
+      "id": "ebaf775b940082a3",
+      "severity": "P2",
+      "category": "deps",
+      "file": "package.json",
+      "line": null,
+      "claim": "high-severity dep advisory: nanoid <3.3.18 (transitive via next)",
+      "evidence": "npm audit 2026-08-14 reports 1 high: GHSA-2v37-7h3g-55p8, node_modules/nanoid, fixAvailable true.",
+      "fix": "npm audit fix",
+      "verified": true
+    },
     {
       "id": "281da97a25927154",
       "severity": "P3",
       "category": "debt",
       "file": "package.json",
       "line": null,
-      "claim": "Dependency drift: eslint-config-next 16.2.10->16.3.0, react/react-dom 19.2.4->19.2.8, and @types/node 20.19.43->26.2.0 are available minor/patch/major bumps not yet applied; eslint 9.39.5->10.8.1 and typescript 5.9.3->7.0.2 majors are blocked by upstream peer ranges (eslint-plugin-react eslint<=9.7, typescript-eslint typescript<6.1.0)",
-      "evidence": "2026-08-10 `npm outdated`: @types/node 20.19.43 (latest 26.2.0), eslint 9.39.5 (latest 10.8.1), eslint-config-next 16.2.10 (latest 16.3.0), react/react-dom 19.2.4 (latest 19.2.8), typescript 5.9.3 (latest 7.0.2). `npm audit` clean (0 vulnerabilities, 435 deps).",
-      "fix": "Bump eslint-config-next and react/react-dom (safe). Evaluate typescript ->~6.0.x under the same ceiling that worked for sibling repos. Hold eslint at 9.x until eslint-config-next ships an eslint-10-compatible eslint-plugin-react.",
+      "claim": "Dependency drift: eslint-config-next 16.2.10->16.3.1, react/react-dom 19.2.4->19.2.8, next 16.3.0->16.3.1, and @types/node 20.19.43->26.2.0 are available minor/patch/major bumps not yet applied; eslint 9.39.5->10.8.1 and typescript 5.9.3->7.0.2 majors are blocked by upstream peer ranges (eslint-plugin-react eslint<=9.7, typescript-eslint typescript<6.1.0)",
+      "evidence": "Re-confirmed 2026-08-14 `npm outdated`, unchanged from the 2026-08-10 pass. `npm audit` clean of vulnerabilities from these specific packages.",
+      "fix": "Bump eslint-config-next, next, and react/react-dom (safe patch/minor). Evaluate typescript ->~6.0.x under the same ceiling that worked for sibling repos. Hold eslint at 9.x until eslint-config-next ships an eslint-10-compatible eslint-plugin-react.",
       "verified": true
     },
     {
@@ -55,5 +82,11 @@
       "claim": "[redacted - see private audit]"
     }
   ],
-  "features": []
+  "features": [
+    {
+      "title": "Real shop photography once available",
+      "rationale": "Hero.tsx currently uses a custom SVG tire/wrench icon in place of real shop photos; swap for real photography via next/image if the business ever signs on.",
+      "effort": "M"
+    }
+  ]
 }
