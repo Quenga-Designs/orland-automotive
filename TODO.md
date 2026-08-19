@@ -8,7 +8,7 @@ Forced-DEEP full-portfolio cycle. Literal coverage: 28/29 tracked files read (ex
 
 ## Open findings
 - [x] **P2 — high-severity dep advisory: nanoid <3.3.18 (transitive via next).** package.json — `npm audit` 2026-08-14 reports 1 high: GHSA-2v37-7h3g-55p8, node_modules/nanoid, fixAvailable true. — fix: `npm audit fix`. (verified fixed 2026-08-19 -- npm audit clean)
-- [ ] **P3 — Dependency drift: eslint-config-next 16.2.10->16.3.1, react/react-dom 19.2.4->19.2.8, next 16.3.0->16.3.1, and @types/node 20.19.43->26.2.0 are available bumps not yet applied; eslint 9.39.5->10.8.1 and typescript 5.9.3->7.0.2 majors are blocked by upstream peer ranges.** package.json — Re-confirmed 2026-08-14, unchanged from the 2026-08-10 pass. — fix: bump eslint-config-next, next, and react/react-dom (safe), evaluate typescript ->~6.0.x, hold eslint at 9.x.
+- [x] **P3 — Dependency drift: eslint-config-next 16.2.10->16.3.1, react/react-dom 19.2.4->19.2.8, next 16.3.0->16.3.1, and @types/node 20.19.43->26.2.0 are available bumps not yet applied; eslint 9.39.5->10.8.1 and typescript 5.9.3->7.0.2 majors are blocked by upstream peer ranges.** package.json — Re-confirmed 2026-08-14, unchanged from the 2026-08-10 pass. — fix: bump eslint-config-next, next, and react/react-dom (safe), evaluate typescript ->~6.0.x, hold eslint at 9.x. (fixed 2026-08-19 -- safe bumps applied: next/eslint-config-next/react/@types/node latest; eslint 9.x + typescript held, upstream-blocked)
 - [ ] **P3 — [redacted - see private audit]** src/lib/site-data.ts
 
 ## Audit sweep — 2026-08-09
