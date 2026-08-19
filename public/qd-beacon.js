@@ -40,7 +40,7 @@
     var referrerHostname = null;
     try {
       referrerHostname = document.referrer ? new URL(document.referrer).hostname : null;
-    } catch (e) {}
+    } catch {}
     var payload = JSON.stringify({ slug: slug, referrer: referrerHostname });
 
     // text/plain keeps this a CORS-simple request: sendBeacon cannot survive a
@@ -51,7 +51,7 @@
       fetch(ENDPOINT, { method: "POST", body: payload, keepalive: true }).catch(function () {});
     }
     sessionStorage.setItem(SESSION_KEY, "1");
-  } catch (e) {
+  } catch {
     /* private-mode storage errors and the like — never surface */
   }
 })();
@@ -93,7 +93,7 @@
       fetch(PROV_ENDPOINT, { method: "POST", body: payload, keepalive: true }).catch(function () {});
     }
     sessionStorage.setItem(PROV_KEY, "1");
-  } catch (e) {
+  } catch {
     /* never surface */
   }
 })();
