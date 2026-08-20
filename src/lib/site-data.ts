@@ -8,7 +8,7 @@
 // could not be confirmed. Nothing here is invented.
 // ---------------------------------------------------------------------------
 
-export const siteUrl = "https://orland-automotive.quengadesigns.dev";
+export const siteUrl = "https://preview.orland-automotive.quengadesigns.dev";
 
 export const business = {
   name: "Orland Automotive Oil & Lube",
