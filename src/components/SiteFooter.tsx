@@ -3,15 +3,15 @@ import { Year } from "@/components/Year";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-line bg-asphalt-darker">
-      <div className="checker-stripe" />
+    <footer className="border-t border-line-dark bg-bezel">
+      <div className="tick-divider-dark" />
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
         <div className="grid gap-10 sm:grid-cols-3">
           <div>
-            <p className="font-display text-xl uppercase tracking-[0.04em] text-chalk">
+            <p className="font-display text-xl uppercase tracking-[0.04em] text-mist">
               Orland Automotive Oil &amp; Lube
             </p>
-            <p className="mt-2 text-sm text-chalk-dim">
+            <p className="mt-2 text-sm text-mist-dim">
               {business.address.line1}
               <br />
               {business.address.city}, {business.address.state} {business.address.zip}
@@ -19,12 +19,12 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="font-display text-sm uppercase tracking-[0.15em] text-safety-yellow">
+            <p className="font-display text-sm uppercase tracking-[0.15em] text-teal-light">
               Contact
             </p>
-            <ul className="mt-3 space-y-1.5 text-sm text-chalk-dim">
+            <ul className="mt-3 space-y-1.5 text-sm text-mist-dim">
               <li>
-                <a href={`tel:${business.phoneHref}`} className="hover:text-safety-yellow">
+                <a href={`tel:${business.phoneHref}`} className="hover:text-amber-light">
                   {business.phone}
                 </a>
               </li>
@@ -33,7 +33,7 @@ export function SiteFooter() {
                   href={business.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-safety-yellow"
+                  className="hover:text-amber-light"
                 >
                   Get directions
                 </a>
@@ -42,16 +42,16 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="font-display text-sm uppercase tracking-[0.15em] text-safety-yellow">
+            <p className="font-display text-sm uppercase tracking-[0.15em] text-teal-light">
               Find Us Online
             </p>
-            <ul className="mt-3 space-y-1.5 text-sm text-chalk-dim">
+            <ul className="mt-3 space-y-1.5 text-sm text-mist-dim">
               <li>
                 <a
                   href={business.social.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-safety-yellow"
+                  className="hover:text-amber-light"
                 >
                   Facebook
                 </a>
@@ -61,7 +61,7 @@ export function SiteFooter() {
                   href={business.social.yelp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-safety-yellow"
+                  className="hover:text-amber-light"
                 >
                   Yelp
                 </a>
@@ -70,14 +70,14 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-line pt-6 text-xs text-chalk-dim/70">
+        <div className="mt-10 border-t border-line-dark pt-6 text-xs text-mist-dim/70">
           <p>
             &copy; <Year /> This is a concept demo built by{" "}
             <a
               href="https://quengadesigns.dev/demo?from=orland-automotive"
               target="_blank"
               rel="noopener"
-              className="underline hover:text-safety-yellow"
+              className="underline hover:text-amber-light"
             >
               Quenga Designs
             </a>{" "}

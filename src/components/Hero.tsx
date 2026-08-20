@@ -1,105 +1,175 @@
 import { business } from "@/lib/site-data";
 
-// Sixteen evenly spaced tread lugs around the tire ring — rectangular
-// blocks (tread pattern) rather than triangular gear teeth, so the
-// silhouette reads as a tire, not a plain gear cog.
-const TREAD_LUGS = Array.from({ length: 16 }, (_, i) => i * (360 / 16));
+// Thirteen minor ticks across a 240° sweep (-120° to 120°, 0° = 12 o'clock),
+// matching a speedometer/odometer dial rather than a generic gear or tire.
+const DIAL_ANGLES = Array.from({ length: 13 }, (_, i) => -120 + i * 20);
 
-// Five lug nuts around the hub, evenly spaced.
-const LUG_NUTS = [0, 72, 144, 216, 288];
+function polarToCartesian(cx: number, cy: number, r: number, angleDeg: number) {
+  const rad = ((angleDeg - 90) * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
 
-function TireWrenchIcon() {
+function describeArc(cx: number, cy: number, r: number, startDeg: number, endDeg: number) {
+  const start = polarToCartesian(cx, cy, r, startDeg);
+  const end = polarToCartesian(cx, cy, r, endDeg);
+  const largeArc = endDeg - startDeg <= 180 ? 0 : 1;
+  return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y}`;
+}
+
+function GaugeDialIcon() {
+  const cx = 100;
+  const cy = 110;
+  const outerR = 82;
+  const tickR1 = 68;
+  const tickR2 = 82;
+  const needleAngle = 60;
+
   return (
     <svg
       viewBox="0 0 200 200"
-      className="h-48 w-48 text-asphalt-darker sm:h-64 sm:w-64 lg:h-72 lg:w-72"
+      className="h-48 w-48 sm:h-64 sm:w-64 lg:h-72 lg:w-72"
       aria-hidden="true"
     >
-      {/* Tire tread ring */}
-      <circle cx="100" cy="100" r="72" fill="none" stroke="currentColor" strokeWidth="13" />
-      {TREAD_LUGS.map((deg) => (
-        <rect
-          key={deg}
-          x="94"
-          y="16"
-          width="12"
-          height="18"
-          fill="currentColor"
-          transform={`rotate(${deg} 100 100)`}
-        />
-      ))}
+      {/* Full track */}
+      <path
+        d={describeArc(cx, cy, outerR, -120, 120)}
+        fill="none"
+        stroke="var(--color-line-dark)"
+        strokeWidth="10"
+        strokeLinecap="round"
+      />
+      {/* Steady segment */}
+      <path
+        d={describeArc(cx, cy, outerR, -120, -20)}
+        fill="none"
+        stroke="var(--color-teal-light)"
+        strokeWidth="10"
+        strokeLinecap="round"
+      />
+      {/* Quick-service segment, where the needle sits */}
+      <path
+        d={describeArc(cx, cy, outerR, -20, needleAngle + 5)}
+        fill="none"
+        stroke="var(--color-amber)"
+        strokeWidth="10"
+        strokeLinecap="round"
+      />
 
-      {/* Hub */}
-      <circle cx="100" cy="100" r="36" fill="currentColor" />
-      {LUG_NUTS.map((deg) => {
-        const rad = (deg * Math.PI) / 180;
-        const lx = 100 + Math.cos(rad) * 19;
-        const ly = 100 + Math.sin(rad) * 19;
-        return <circle key={deg} cx={lx} cy={ly} r="4.5" fill="var(--color-safety-yellow)" />;
+      {DIAL_ANGLES.map((deg) => {
+        const p1 = polarToCartesian(cx, cy, tickR1, deg);
+        const p2 = polarToCartesian(cx, cy, tickR2, deg);
+        return (
+          <line
+            key={deg}
+            x1={p1.x}
+            y1={p1.y}
+            x2={p2.x}
+            y2={p2.y}
+            stroke="var(--color-mist-dim)"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        );
       })}
 
-      {/* Wrench laid diagonally across the tire */}
-      <g transform="rotate(-38 100 100)">
-        <rect x="42" y="93" width="116" height="13" rx="6.5" fill="currentColor" />
-        <circle cx="32" cy="100" r="21" fill="none" stroke="currentColor" strokeWidth="13" />
-        <circle cx="168" cy="100" r="16" fill="none" stroke="currentColor" strokeWidth="11" />
+      <g transform={`rotate(${needleAngle} ${cx} ${cy})`}>
+        <line
+          x1={cx}
+          y1={cy}
+          x2={cx}
+          y2={cy - 64}
+          stroke="var(--color-amber)"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
       </g>
+
+      <circle cx={cx} cy={cy} r="14" fill="var(--color-mist)" />
+      <circle cx={cx} cy={cy} r="14" fill="none" stroke="var(--color-amber)" strokeWidth="3" />
+
+      {/* Oil-drop accent beneath the dial */}
+      <path
+        d="M100 150c-9 12-16 21-16 30a16 16 0 0 0 32 0c0-9-7-18-16-30z"
+        fill="var(--color-amber)"
+      />
     </svg>
   );
 }
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-asphalt">
+    <section className="relative overflow-hidden bg-paper">
       <div className="mx-auto grid max-w-6xl grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]">
         {/* Copy column */}
-        <div className="relative min-h-[24rem] px-5 py-16 sm:min-h-[28rem] sm:px-8 sm:py-20 lg:py-24">
-          {/* Corner badge — replaces the old top eyebrow line */}
-          <div className="absolute left-5 top-6 inline-flex items-center gap-2 rounded-full border border-safety-yellow/50 bg-asphalt-darker/80 px-3.5 py-1.5 sm:left-8 sm:top-8">
-            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-safety-yellow" />
-            <span className="whitespace-nowrap font-display text-[0.65rem] uppercase tracking-[0.25em] text-safety-yellow sm:text-xs">
+        <div className="relative flex flex-col justify-center gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
+          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-teal/30 bg-paper-raised px-3.5 py-1.5 shadow-sm shadow-ink/5">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber" />
+            <span className="whitespace-nowrap font-display text-xs uppercase tracking-[0.25em] text-teal">
               Since {business.establishedYear} &middot; Orland, CA
             </span>
           </div>
 
-          <div className="pt-16 sm:pt-20">
-            <h1 className="text-outline max-w-2xl text-balance font-display text-6xl uppercase leading-[0.88] tracking-tight sm:text-7xl md:text-8xl">
-              Orland
-              <br />
-              Automotive
+          <div>
+            <h1 className="max-w-xl text-balance font-display text-5xl font-semibold uppercase leading-[0.95] tracking-tight text-ink sm:text-6xl md:text-7xl">
+              Orland Automotive
+              <span className="mt-2 block text-amber">Oil &amp; Lube</span>
             </h1>
-
-            <p className="mt-6 max-w-md text-balance text-lg text-chalk-dim sm:text-xl">
+            <p className="mt-6 max-w-md text-balance text-lg text-ink-dim sm:text-xl">
               {business.description}
             </p>
           </div>
 
-          {/* CTAs: stacked in normal flow on small screens; at lg+ the
-              wrapper collapses (display: contents) and each button pins to
-              an opposite corner of the column via absolute positioning. */}
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center lg:contents">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
               href={`tel:${business.phoneHref}`}
-              className="rounded-sm border-2 border-safety-yellow bg-safety-yellow px-7 py-3.5 text-center font-display text-lg uppercase tracking-[0.08em] text-asphalt-darker transition hover:bg-safety-yellow-light hover:border-safety-yellow-light lg:absolute lg:right-8 lg:top-8 lg:px-5 lg:py-2.5 lg:text-base"
+              className="rounded-sm border-2 border-amber bg-amber px-7 py-3.5 text-center font-display text-lg uppercase tracking-[0.08em] text-paper-raised transition hover:border-amber-light hover:bg-amber-light"
             >
               Call {business.phone}
             </a>
             <a
               href="#services"
-              className="rounded-sm border-2 border-chalk-dim/40 px-7 py-3.5 text-center font-display text-lg uppercase tracking-[0.08em] text-chalk transition hover:border-safety-yellow hover:text-safety-yellow lg:absolute lg:bottom-8 lg:left-8 lg:px-5 lg:py-2.5 lg:text-base"
+              className="rounded-sm border-2 border-ink/15 px-7 py-3.5 text-center font-display text-lg uppercase tracking-[0.08em] text-ink transition hover:border-teal hover:text-teal"
             >
               See Services
             </a>
           </div>
+
+          {/* Quick-read stat strip — dial-style readouts of facts already
+              stated elsewhere on the site (walk-in service, founding year,
+              universal fit), not new claims. */}
+          <dl className="grid grid-cols-3 gap-4 border-t border-line pt-6 sm:max-w-lg">
+            <div>
+              <dt className="font-display text-[0.65rem] uppercase tracking-[0.2em] text-ink-dim">
+                Wait
+              </dt>
+              <dd className="tabular-nums mt-1 font-display text-xl text-ink sm:text-2xl">
+                Walk-in
+              </dd>
+            </div>
+            <div>
+              <dt className="font-display text-[0.65rem] uppercase tracking-[0.2em] text-ink-dim">
+                Serving Since
+              </dt>
+              <dd className="tabular-nums mt-1 font-display text-xl text-ink sm:text-2xl">
+                {business.establishedYear}
+              </dd>
+            </div>
+            <div>
+              <dt className="font-display text-[0.65rem] uppercase tracking-[0.2em] text-ink-dim">
+                Fits
+              </dt>
+              <dd className="mt-1 font-display text-xl text-ink sm:text-2xl">Any Make</dd>
+            </div>
+          </dl>
         </div>
 
-        {/* Graphic panel */}
-        <div className="grain relative flex items-center justify-center border-t border-line bg-safety-yellow py-14 lg:border-l lg:border-t-0">
-          <TireWrenchIcon />
+        {/* Gauge panel */}
+        <div className="dot-grid relative flex items-center justify-center border-t border-line-dark bg-bezel py-16 lg:border-l lg:border-t-0">
+          <GaugeDialIcon />
         </div>
       </div>
 
-      <div className="hero-angle-cut" aria-hidden="true" />
+      <div className="gauge-bar" aria-hidden="true" />
     </section>
   );
 }

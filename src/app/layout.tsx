@@ -1,16 +1,16 @@
 /* © 2026 Quenga Designs — All rights reserved. Proprietary; see LICENSE. Unauthorized copying or deployment prohibited. */
 import type { Metadata } from "next";
-import { Teko, Inter } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import { ConceptBanner } from "@/components/ConceptBanner";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-const teko = Teko({
-  variable: "--font-teko",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
 });
 
 const inter = Inter({
@@ -43,8 +43,8 @@ export default async function RootLayout({
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
-    <html lang="en" className={`${teko.variable} ${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-asphalt text-chalk">
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-paper text-ink">
         <div className="sticky top-0 z-50 flex flex-col">
           <ConceptBanner />
           <SiteHeader />
