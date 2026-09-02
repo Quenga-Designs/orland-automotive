@@ -6,6 +6,7 @@ import "./globals.css";
 import { ConceptBanner } from "@/components/ConceptBanner";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { PreviewRibbon } from "@/components/PreviewRibbon";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -51,6 +52,7 @@ export default async function RootLayout({
         </div>
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <PreviewRibbon />
         <script src="/qd-beacon.js" defer nonce={nonce}></script>
       </body>
     </html>
