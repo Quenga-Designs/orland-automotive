@@ -1,121 +1,166 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   DESIGN DIRECTION — "The Painted Wall" (revamp 2026-09-18)
+   Their brand is the building: an oxblood-painted brick wall with a white
+   hand-script "Orland Automotive" over big block "OIL & LUBE" (sampled
+   #634553 in sun), a red-and-black package board on the waiting-room wall,
+   and blue Orland sky over everything.
+--------------------------------------------------------------------------- */
+
 :root {
-  /* Instrument bezel — dark anchor surfaces (header, footer, gauge panel) */
-  --color-bezel: #0f1a22;
-  --color-bezel-raised: #16242e;
-
-  /* Gauge face — light content surfaces */
-  --color-paper: #f4f7f9;
-  --color-paper-raised: #ffffff;
-
-  /* Ink — text on light surfaces */
-  --color-ink: #101b24;
-  --color-ink-dim: #4d6272;
-
-  /* Mist — text on dark bezel surfaces */
-  --color-mist: #d9e2e8;
-  --color-mist-dim: #93a5b1;
-
-  /* Precision teal — brand accents, eyebrows, idle links */
-  --color-teal: #0b6e78;
-  --color-teal-light: #4fb8c4;
-
-  /* Gauge-needle amber — the single action color (CTAs, hover states) */
-  --color-amber: #b3550f;
-  --color-amber-light: #d9720f;
-
-  --color-line: rgba(16, 27, 36, 0.12);
-  --color-line-dark: rgba(217, 226, 232, 0.14);
+  --color-wall: #6b3f4f;
+  --color-wall-deep: #3e2530;
+  --color-sign: #f5f2ec;
+  --color-board: #16171b;
+  --color-tab: #c8202f;
+  --color-tab-deep: #a11826;
+  --color-sky: #77adf0;
+  --color-sky-deep: #1f5fa8;
+  --color-asphalt: #efede9;
+  --color-concrete: #d3d4cf;
+  --color-ink: #1b1a1d;
+  --color-line: rgba(27, 26, 29, 0.14);
 }
 
 @theme inline {
-  --color-bezel: var(--color-bezel);
-  --color-bezel-raised: var(--color-bezel-raised);
-  --color-paper: var(--color-paper);
-  --color-paper-raised: var(--color-paper-raised);
+  --color-wall: var(--color-wall);
+  --color-wall-deep: var(--color-wall-deep);
+  --color-sign: var(--color-sign);
+  --color-board: var(--color-board);
+  --color-tab: var(--color-tab);
+  --color-tab-deep: var(--color-tab-deep);
+  --color-sky: var(--color-sky);
+  --color-sky-deep: var(--color-sky-deep);
+  --color-asphalt: var(--color-asphalt);
+  --color-concrete: var(--color-concrete);
   --color-ink: var(--color-ink);
-  --color-ink-dim: var(--color-ink-dim);
-  --color-mist: var(--color-mist);
-  --color-mist-dim: var(--color-mist-dim);
-  --color-teal: var(--color-teal);
-  --color-teal-light: var(--color-teal-light);
-  --color-amber: var(--color-amber);
-  --color-amber-light: var(--color-amber-light);
   --color-line: var(--color-line);
-  --color-line-dark: var(--color-line-dark);
-  --font-display: var(--font-space-grotesk);
-  --font-body: var(--font-inter);
+  --font-script: var(--font-damion);
+  --font-block: var(--font-passion);
+  --font-sans: var(--font-redhat);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-paper);
+  background: var(--color-asphalt);
   color: var(--color-ink);
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
 }
 
 ::selection {
-  background: var(--color-amber);
-  color: var(--color-paper);
+  background: var(--color-sky);
+  color: var(--color-ink);
 }
 
-.text-balance {
-  text-wrap: balance;
-}
+@layer components {
+  /* Painted brick: offset courses with dark mortar, a sun-wash on top. */
+  .brick {
+    background-color: var(--color-wall);
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(0, 0, 0, 0.12)),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='44'%3E%3Cpath d='M0 21h64M0 43h64M32 0v21M0 22v21M64 22v21' stroke='%234a2a36' stroke-width='2' opacity='.75'/%3E%3C/svg%3E");
+    background-size: auto, 64px 44px;
+  }
 
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
+  /* Hand-painted white lettering: slightly soft, a hair of shadow. */
+  .painted {
+    color: var(--color-sign);
+    text-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.25),
+      0 0 1px rgba(255, 255, 255, 0.4);
+  }
 
-/* Dot-grid — a faint measurement-grid texture, used sparingly behind the
-   gauge panel and services hero instead of a decorative flourish. */
-.dot-grid {
-  background-image: radial-gradient(var(--color-line-dark) 1px, transparent 1px);
-  background-size: 18px 18px;
-}
+  /* Their package board: black panel, red tabs with a white circle icon. */
+  .board {
+    background: var(--color-board);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow:
+      inset 0 0 0 3px #2a2b31,
+      0 24px 40px -28px rgba(0, 0, 0, 0.8);
+  }
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--color-tab-deep);
+    color: #fff;
+    padding: 0.2rem 1rem 0.2rem 0.25rem;
+    border-radius: 999px 6px 6px 999px;
+    font-family: var(--font-block);
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tab-dot {
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--color-tab-deep);
+    box-shadow: 0 0 0 3px var(--color-tab-deep);
+  }
 
-/* Tick-mark ruler divider — evokes a speedometer/odometer's minor ticks.
-   Used at section seams in place of a plain rule. */
-.tick-divider {
-  height: 14px;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--color-line) 0,
-    var(--color-line) 1px,
-    transparent 1px,
-    transparent 8px
-  );
-  background-position: center;
-  background-repeat: repeat-x;
-  background-size: 8px 100%;
-}
+  /* Lit box sign (their 2018 NOW OPEN sign), used for "Walk-ins welcome". */
+  .lit {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    border: 3px solid #d7d7d7;
+    border-radius: 4px;
+    padding: 0.35rem 0.9rem;
+    font-family: var(--font-block);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow:
+      0 0 0 2px #111,
+      0 0 18px rgba(255, 255, 255, 0.25);
+  }
 
-.tick-divider-dark {
-  height: 14px;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--color-line-dark) 0,
-    var(--color-line-dark) 1px,
-    transparent 1px,
-    transparent 8px
-  );
-  background-position: center;
-  background-repeat: repeat-x;
-  background-size: 8px 100%;
-}
-
-/* Gauge-fill bar — a thin two-tone meter standing in for a progress /
-   service-interval indicator. */
-.gauge-bar {
-  height: 4px;
-  background: linear-gradient(to right, var(--color-teal), var(--color-amber));
+  .btn {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 8px;
+    padding: 0.75rem 1.3rem;
+    font-weight: 800;
+    transition: transform 0.15s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:focus-visible {
+    outline: 3px solid var(--color-sky-deep);
+    outline-offset: 3px;
+  }
+  .btn-tab {
+    background: var(--color-tab-deep);
+    color: #fff;
+  }
+  .btn-sign {
+    background: var(--color-sign);
+    color: var(--color-wall-deep);
+  }
+  .btn-line {
+    background: #fff;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 2px var(--color-ink);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
+  }
+  .btn {
+    transition: none;
   }
 }

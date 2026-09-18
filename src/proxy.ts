@@ -21,6 +21,7 @@ export function proxy(request: NextRequest) {
     "img-src 'self' data:",
     "font-src 'self' https://fonts.gstatic.com",
     "connect-src 'self' https://quengadesigns.dev",
+    "frame-src https://www.google.com",
     "frame-ancestors 'none'",
     "object-src 'none'",
     "base-uri 'self'",

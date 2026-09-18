@@ -17,7 +17,7 @@ function getServerSnapshot() {
 const ribbonStyle: React.CSSProperties = {
   position: "fixed",
   right: -46,
-  bottom: 34,
+  bottom: 104, // clears the sticky mobile CTA bar
   zIndex: 60,
   transform: "rotate(-45deg)",
   background: "#B8912A",

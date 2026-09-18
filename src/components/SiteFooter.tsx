@@ -1,88 +1,53 @@
-import { business } from "@/lib/site-data";
-import { Year } from "@/components/Year";
+import { business, hours } from "@/lib/site-data";
+
+const links = [
+  { label: "Facebook", href: business.social.facebook },
+  { label: "Yelp", href: business.social.yelp },
+  { label: "Google Maps", href: business.social.google },
+];
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-line-dark bg-bezel">
-      <div className="tick-divider-dark" />
-      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
-        <div className="grid gap-10 sm:grid-cols-3">
-          <div>
-            <p className="font-display text-xl uppercase tracking-[0.04em] text-mist">
-              Orland Automotive Oil &amp; Lube
-            </p>
-            <p className="mt-2 text-sm text-mist-dim">
-              {business.address.line1}
-              <br />
-              {business.address.city}, {business.address.state} {business.address.zip}
-            </p>
-          </div>
-
-          <div>
-            <p className="font-display text-sm uppercase tracking-[0.15em] text-teal-light">
-              Contact
-            </p>
-            <ul className="mt-3 space-y-1.5 text-sm text-mist-dim">
-              <li>
-                <a href={`tel:${business.phoneHref}`} className="hover:text-amber-light">
-                  {business.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={business.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-amber-light"
-                >
-                  Get directions
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="font-display text-sm uppercase tracking-[0.15em] text-teal-light">
-              Find Us Online
-            </p>
-            <ul className="mt-3 space-y-1.5 text-sm text-mist-dim">
-              <li>
-                <a
-                  href={business.social.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-amber-light"
-                >
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a
-                  href={business.social.yelp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-amber-light"
-                >
-                  Yelp
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer className="brick text-sign">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
+        <div className="painted">
+          <p className="font-script text-4xl leading-none">Orland Automotive</p>
+          <p className="font-block text-3xl tracking-wide">OIL &amp; LUBE</p>
         </div>
-
-        <div className="mt-10 border-t border-line-dark pt-6 text-xs text-mist-dim/70">
+        <div className="text-sm leading-relaxed">
+          <p className="font-bold">
+            {business.address.line1}, {business.address.city}, {business.address.state} {business.address.zip}
+          </p>
           <p>
-            &copy; <Year /> This is a concept demo built by{" "}
-            <a
-              href="https://quengadesigns.dev/demo?from=orland-automotive"
-              target="_blank"
-              rel="noopener"
-              className="underline hover:text-amber-light"
-            >
+            <a href={business.phoneHref} className="font-bold underline underline-offset-4">
+              {business.phone}
+            </a>
+          </p>
+          {hours.map((h) => (
+            <p key={h.day} className="text-sign/90">
+              {h.day}: {h.time}
+            </p>
+          ))}
+        </div>
+        <ul className="flex flex-wrap content-start gap-2">
+          {links.map((l) => (
+            <li key={l.label}>
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-md bg-black/25 px-4 text-sm font-bold hover:bg-black/40">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="bg-wall-deep">
+        <div className="mx-auto max-w-6xl space-y-2 px-4 py-5 text-xs leading-relaxed text-sign/85 sm:px-6">
+          <p>Photos: from the shop&rsquo;s Facebook page and Yelp listing (owner and customer uploads). Reviews quoted from Yelp and Google with links to the originals.</p>
+          <p>
+            Concept demo by{" "}
+            <a href="https://quengadesigns.dev/demo?from=orland-automotive" target="_blank" rel="noopener" className="font-bold text-sky underline underline-offset-4">
               Quenga Designs
             </a>{" "}
-            for portfolio purposes. It is not affiliated with or endorsed by Orland
-            Automotive Oil &amp; Lube, and it is not indexed by search engines.
+            &mdash; unsolicited, not Orland Automotive Oil &amp; Lube&rsquo;s official website and not affiliated with or endorsed by the shop.
           </p>
         </div>
       </div>

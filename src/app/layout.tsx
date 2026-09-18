@@ -1,27 +1,36 @@
 /* © 2026 Quenga Designs — All rights reserved. Proprietary; see LICENSE. Unauthorized copying or deployment prohibited. */
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Damion, Passion_One, Red_Hat_Text } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import { ConceptBanner } from "@/components/ConceptBanner";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PreviewRibbon } from "@/components/PreviewRibbon";
+import { MobileCta } from "@/components/MobileCta";
+import { siteUrl } from "@/lib/site-data";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const damion = Damion({
+  variable: "--font-damion",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: "400",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const passion = Passion_One({
+  variable: "--font-passion",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const redhat = Red_Hat_Text({
+  variable: "--font-redhat",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   other: { "qd-provenance": "qd-prov:orland-automotive:dab34766" },
-  title: "Orland Automotive Oil & Lube — Concept Site (Not Official) | Quenga Designs",
+  metadataBase: new URL(siteUrl),
+  title: "Orland Automotive Oil & Lube — oil changes & repair, Orland CA (Concept Site)",
   description:
     "An unsolicited concept redesign for Orland Automotive Oil & Lube in Orland, CA. Built as a design demo by Quenga Designs — not the shop's official website.",
   robots: {
@@ -44,14 +53,15 @@ export default async function RootLayout({
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-paper text-ink">
-        <div className="sticky top-0 z-50 flex flex-col">
+    <html lang="en" className={`${damion.variable} ${passion.variable} ${redhat.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-asphalt text-ink">
+        <div className="sticky top-0 z-50">
           <ConceptBanner />
-          <SiteHeader />
         </div>
-        <main className="flex-1">{children}</main>
+        <SiteHeader />
+        <main className="flex-1 pb-20 md:pb-0">{children}</main>
         <SiteFooter />
+        <MobileCta />
         <PreviewRibbon />
         <script src="/qd-beacon.js" defer nonce={nonce}></script>
       </body>
