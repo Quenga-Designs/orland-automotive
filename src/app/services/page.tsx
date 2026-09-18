@@ -1,53 +1,56 @@
 import type { Metadata } from "next";
-import { ContactCta } from "@/components/ContactCta";
-import { business, pricingNote, services } from "@/lib/site-data";
+import { business, photos, services } from "@/lib/site-data";
+import { Framed, PackageBoard } from "@/components/parts";
 
 export const metadata: Metadata = {
-  title: "Services — Orland Automotive Oil & Lube Concept | Quenga Designs",
-  description:
-    "Concept services menu for Orland Automotive Oil & Lube in Orland, CA — oil changes, brakes, diagnostics, and full auto repair.",
+  title: "Services — Orland Automotive Oil & Lube (Concept Site)",
+  description: "Oil changes, maintenance, brakes, electrical, HVAC and diagnosis at Orland Automotive Oil & Lube, 615 Fifth St, Orland, CA.",
 };
 
 export default function ServicesPage() {
   return (
     <>
-      <section className="dot-grid border-b border-line-dark bg-bezel">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-          <p className="font-display text-sm uppercase tracking-[0.3em] text-teal-light">
-            The Full Menu
-          </p>
-          <h1 className="mt-4 max-w-2xl text-balance font-display text-5xl uppercase leading-[0.9] tracking-tight text-mist sm:text-7xl">
-            Services
-          </h1>
-          <p className="mt-5 max-w-xl text-mist-dim">{pricingNote}</p>
-        </div>
-        <div className="tick-divider-dark" />
-      </section>
-
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-          <ul className="grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2">
-            {services.map((service) => (
-              <li
-                key={service.name}
-                className="border-t-2 border-transparent bg-paper-raised p-7 transition hover:border-amber"
-              >
-                <h2 className="font-display text-2xl uppercase tracking-wide text-ink">
-                  {service.name}
-                </h2>
-                <p className="mt-2 text-ink-dim">{service.description}</p>
-              </li>
-            ))}
-          </ul>
-
-          <p className="mt-8 text-sm text-ink-dim/80">
-            Have something specific in mind? Call {business.phone} — the team
-            {" "}can tell you exactly what the shop offers.
-          </p>
+      <section className="brick px-4 py-14 sm:px-6">
+        <div className="painted mx-auto max-w-6xl">
+          <p className="font-script text-4xl">any make, any model</p>
+          <h1 className="font-block text-6xl tracking-wide sm:text-7xl">SERVICES</h1>
+          <p className="mt-3 max-w-xl text-lg">Foreign or domestic. This is the list the shop verified on its own Yelp page.</p>
         </div>
       </section>
-
-      <ContactCta />
+      <section className="px-4 py-14 sm:px-6">
+        <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((g) => (
+            <div key={g.group} className="rounded-xl bg-white p-6 ring-1 ring-line">
+              <h2 className="font-block text-3xl tracking-wide text-wall">{g.group.toUpperCase()}</h2>
+              <ul className="mt-3 space-y-1.5">
+                {g.items.map((i) => (
+                  <li key={i} className="flex gap-2">
+                    <span aria-hidden="true" className="text-tab">▸</span>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p className="mx-auto mt-6 max-w-6xl text-sm text-ink/80">
+          Repair pricing depends on the job &mdash; call{" "}
+          <a href={business.phoneHref} className="font-bold underline underline-offset-4">
+            {business.phone}
+          </a>{" "}
+          for a quote.
+        </p>
+      </section>
+      <section className="bg-white px-4 py-14 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <PackageBoard />
+          <div className="mt-10 grid items-start gap-6 md:grid-cols-3">
+            <Framed photo={photos.engine} sizes="(min-width: 768px) 360px, 92vw" />
+            <Framed photo={photos.board} sizes="(min-width: 768px) 360px, 92vw" />
+            <Framed photo={photos.openDay} sizes="(min-width: 768px) 360px, 92vw" />
+          </div>
+        </div>
+      </section>
     </>
   );
 }
