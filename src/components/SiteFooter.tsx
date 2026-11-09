@@ -19,7 +19,7 @@ export function SiteFooter() {
             {business.address.line1}, {business.address.city}, {business.address.state} {business.address.zip}
           </p>
           <p>
-            <a href={business.phoneHref} className="font-bold underline underline-offset-4">
+            <a href={business.phoneHref} className="inline-flex min-h-11 min-w-11 items-center font-bold underline underline-offset-4">
               {business.phone}
             </a>
           </p>
@@ -47,7 +47,7 @@ export function SiteFooter() {
             <a href="https://quengadesigns.dev/demo?from=orland-automotive" target="_blank" rel="noopener" className="font-bold text-sky underline underline-offset-4">
               Quenga Designs
             </a>{" "}
-            &mdash; unsolicited, not Orland Automotive Oil &amp; Lube&rsquo;s official website and not affiliated with or endorsed by the shop.
+            (unsolicited), not Orland Automotive Oil &amp; Lube&rsquo;s official website and not affiliated with or endorsed by the shop.
           </p>
         </div>
       </div>

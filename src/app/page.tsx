@@ -42,7 +42,7 @@ export default function HomePage() {
                   <span className="block font-block text-[clamp(3.6rem,13vw,7.5rem)] leading-[0.85] tracking-wide">OIL &amp; LUBE</span>
                 </h1>
                 <p className="mt-6 max-w-lg text-lg text-sign">
-                  Oil changes and complete repair for any make and model, foreign or domestic &mdash; on Fifth Street in Orland.
+                  Oil changes and complete repair for any make and model, foreign or domestic, on Fifth Street in Orland.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <a href={business.phoneHref} className="btn btn-sign">
@@ -68,7 +68,7 @@ export default function HomePage() {
           <p className="font-script text-3xl text-wall">the performance package</p>
           <h2 id="package-title" className="font-block text-5xl tracking-wide sm:text-6xl">EVERY OIL CHANGE</h2>
           <p className="mt-2 max-w-2xl text-lg text-ink/85">
-            What their board says comes with it &mdash; &ldquo;{theirWords.yelp}&rdquo;
+            What their board says comes with it. In their words: &ldquo;{theirWords.yelp}&rdquo;
           </p>
           <div className="mt-8">
             <PackageBoard />

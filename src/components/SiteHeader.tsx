@@ -16,7 +16,7 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <a href={business.phoneHref} className="btn btn-sign hidden !min-h-10 !py-2 text-sm sm:inline-flex">
+        <a href={business.phoneHref} className="btn btn-sign hidden !py-2 text-sm sm:inline-flex">
           Call {business.phone}
         </a>
       </div>

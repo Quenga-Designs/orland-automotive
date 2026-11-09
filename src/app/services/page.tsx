@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { business, photos, services } from "@/lib/site-data";
+import { business, photos, services, siteUrl } from "@/lib/site-data";
 import { Framed, PackageBoard } from "@/components/parts";
 
 export const metadata: Metadata = {
-  title: "Services — Orland Automotive Oil & Lube (Concept Site)",
+  title: "Services | Orland Automotive Oil & Lube (Concept Site)",
   description: "Oil changes, maintenance, brakes, electrical, HVAC and diagnosis at Orland Automotive Oil & Lube, 615 Fifth St, Orland, CA.",
+  alternates: { canonical: `${siteUrl}/services` },
+  openGraph: {
+    title: "Services | Orland Automotive Oil & Lube",
+    description: "Oil changes, maintenance, brakes, electrical, HVAC and diagnosis on Fifth Street in Orland.",
+    url: `${siteUrl}/services`,
+    images: [{ url: "/opengraph-image.jpg", width: 1200, height: 630, alt: "Orland Automotive Oil & Lube, painted brick wall at 615 Fifth St, Orland" }],
+  },
 };
 
 export default function ServicesPage() {
@@ -33,13 +40,12 @@ export default function ServicesPage() {
             </div>
           ))}
         </div>
-        <p className="mx-auto mt-6 max-w-6xl text-sm text-ink/80">
-          Repair pricing depends on the job &mdash; call{" "}
-          <a href={business.phoneHref} className="font-bold underline underline-offset-4">
-            {business.phone}
-          </a>{" "}
-          for a quote.
-        </p>
+        <div className="mx-auto mt-6 flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink/80">
+          <p>Repair pricing depends on the job. Call for a quote.</p>
+          <a href={business.phoneHref} className="btn btn-tab">
+            Call {business.phone}
+          </a>
+        </div>
       </section>
       <section className="bg-white px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-6xl">

@@ -29,10 +29,21 @@ const redhat = Red_Hat_Text({
 
 export const metadata: Metadata = {
   other: { "qd-provenance": "qd-prov:orland-automotive:dab34766" },
-  metadataBase: new URL(siteUrl),
-  title: "Orland Automotive Oil & Lube — oil changes & repair, Orland CA (Concept Site)",
+  // Branch previews resolve relative URLs (og:image) against their own host; the canonical stays on the preview host.
+  metadataBase: new URL(
+    process.env.VERCEL_ENV === "preview" && process.env.VERCEL_BRANCH_URL ? `https://${process.env.VERCEL_BRANCH_URL}` : siteUrl,
+  ),
+  alternates: { canonical: `${siteUrl}/` },
+  openGraph: {
+    type: "website",
+    siteName: "Orland Automotive Oil & Lube (concept)",
+    title: "Orland Automotive Oil & Lube | Oil changes & repair in Orland, CA",
+    description: "Oil changes and complete repair for any make and model, foreign or domestic, at 615 Fifth St in Orland.",
+    url: `${siteUrl}/`,
+  },
+  title: "Orland Automotive Oil & Lube | Oil changes & repair in Orland, CA (Concept Site)",
   description:
-    "An unsolicited concept redesign for Orland Automotive Oil & Lube in Orland, CA. Built as a design demo by Quenga Designs — not the shop's official website.",
+    "An unsolicited concept redesign for Orland Automotive Oil & Lube in Orland, CA. Built as a design demo by Quenga Designs, not the shop's official website.",
   robots: {
     index: false,
     follow: false,

@@ -1,10 +1,17 @@
 import Image from "next/image";
 import { board, boardPrices, business, reviews, ratings, type Photo } from "@/lib/site-data";
 
+const starPath = "M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8Z";
+
+/** Five drawn stars (Yelp is 5.0 over all 10 reviews, so each Yelp quote is a 5-star review). */
 export function Stars({ className = "" }: { className?: string }) {
   return (
-    <span aria-hidden="true" className={`tracking-tight text-tab ${className}`}>
-      ★★★★★
+    <span role="img" aria-label="5 out of 5 stars" className={`inline-flex gap-0.5 text-tab ${className}`}>
+      {[0, 1, 2, 3, 4].map((i) => (
+        <svg key={i} viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+          <path d={starPath} />
+        </svg>
+      ))}
     </span>
   );
 }
@@ -73,21 +80,21 @@ export function PackageBoard() {
         <Column icon={Glass} title="Inspect" items={board.inspect} />
         <Column icon={Spark} title="Clean (add-on)" items={board.clean} />
       </div>
-      <div className="mt-10 grid grid-cols-2 gap-3 border-t-2 border-tab-deep pt-8 md:grid-cols-4">
-        {boardPrices.tiers.map((t) => (
-          <div key={t.name} className="overflow-hidden rounded-lg bg-white text-center text-ink">
-            <p className="bg-tab-deep px-2 py-1.5 text-sm font-bold text-white">{t.name}</p>
-            <p className="px-2 py-3 font-block text-4xl">{t.price}</p>
-          </div>
-        ))}
+      <div className="mt-10 border-t-2 border-tab-deep pt-8">
+        <p className="font-block text-2xl tracking-wide text-sign">Pick your oil</p>
+        <ul className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {boardPrices.tiers.map((t) => (
+            <li key={t} className="overflow-hidden rounded-lg bg-white text-center text-ink">
+              <p className="bg-tab-deep px-2 py-2 text-sm font-bold text-white">{t}</p>
+              <p className="px-2 py-3 text-sm font-bold">Ask at the counter</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-white/85">{boardPrices.note}</p>
+        <a href={business.phoneHref} className="btn btn-sign mt-5">
+          Call {business.phone} for today&rsquo;s price
+        </a>
       </div>
-      <p className="mt-4 text-sm text-white/85">
-        Prices from {boardPrices.date}; the Full Synthetic tag is cut off in the photo. Prices change &mdash; call{" "}
-        <a href={business.phoneHref} className="font-bold text-white underline underline-offset-4">
-          {business.phone}
-        </a>{" "}
-        for today&rsquo;s.
-      </p>
     </div>
   );
 }
@@ -100,11 +107,10 @@ export function ReviewGrid({ limit = reviews.length }: { limit?: number }) {
           {/* Yelp is 5.0 across all 10 reviews, so every Yelp quote is 5 stars; Google raters weren't verified individually. */}
           {r.platform === "Yelp" ? <Stars /> : <span className="text-xs font-bold tracking-wide text-ink/70 uppercase">Google review</span>}
           <blockquote className="mt-3 flex-1 leading-relaxed">&ldquo;{r.quote}&rdquo;</blockquote>
-          <p className="mt-4 text-sm">
-            <span className="font-bold">{r.name}</span>{" "}
+          <p className="mt-3 flex flex-wrap items-center gap-x-2 text-sm">
+            <span className="font-bold">{r.name}</span>
             <span className="text-ink/80">
-              ·{" "}
-              <a href={r.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+              <a href={r.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 min-w-11 items-center underline underline-offset-2">
                 {r.platform}, {r.date}
               </a>
             </span>

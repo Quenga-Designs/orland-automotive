@@ -42,7 +42,7 @@ export const hours = [
   { day: "Monday – Friday", time: "9 AM – 5 PM" },
   { day: "Saturday & Sunday", time: "Closed" },
 ];
-export const hoursNote = "Yelp lists 5:30 PM close Tuesday–Friday — call if you're cutting it close.";
+export const hoursNote = "Google lists 5 PM every weekday; Yelp lists 5:30 PM Tuesday to Friday. Call if you're cutting it close.";
 
 export const ratings = [
   { platform: "Google", value: "4.8", count: "52 reviews", href: business.social.google },
@@ -58,15 +58,14 @@ export const board = {
   clean: ["Exterior windows", "Vacuum interior floors"],
 };
 
-/** Prices off the Sep 28, 2022 board photo. Full Synthetic is cut off in the photo. */
+/**
+ * Oil grades on their board. The newest dated board photo with prices is Sep 2022, four years
+ * old by this revamp (2026-11-08), so the site names the grades and sends people to the phone
+ * for the price instead of printing stale numbers. TODO(client): current prices.
+ */
 export const boardPrices = {
-  date: "their board, photographed Sep 2022",
-  tiers: [
-    { name: "Conventional", price: "$65.99" },
-    { name: "High Mileage", price: "$79.99" },
-    { name: "Synthetic Blend", price: "$89.99" },
-    { name: "Full Synthetic", price: "Ask" },
-  ],
+  tiers: ["Conventional", "High Mileage", "Synthetic Blend", "Full Synthetic"],
+  note: "Four grades of oil on the board. Prices change with the oil and the car, so the shop quotes them over the phone or at the counter.",
 };
 
 /** Yelp "Services Offered — Verified by Business", grouped. */
@@ -167,10 +166,10 @@ export const photos = {
   },
   board: {
     src: "/photos/service-board.webp",
-    alt: "Their wall board listing the oil change package — change, check/fill, inspect and clean — above the price tiers.",
+    alt: "Their wall board listing the oil change package (change, check/fill, inspect and clean) above the price tiers.",
     w: 750,
     h: 1000,
-    caption: "The package board · Yelp, 2019 (older prices)",
+    caption: "The package board · Yelp, 2019 (prices since changed)",
   },
 };
 

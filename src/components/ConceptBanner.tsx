@@ -11,8 +11,8 @@ export function ConceptBanner() {
         >
           Quenga Designs
         </a>{" "}
-        &mdash; this is an unsolicited design demo, not Orland Automotive Oil &amp;
-        Lube&rsquo;s official website. For the real shop, visit their{" "}
+        (this is an unsolicited design demo, not Orland Automotive Oil &amp;
+        Lube&rsquo;s official website). For the real shop, visit their{" "}
         <a
           href="https://www.facebook.com/OTownAuto/"
           target="_blank"
