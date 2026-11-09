@@ -22,7 +22,7 @@ const jsonLd = {
   ],
   hasMap: business.mapsUrl,
   sameAs: [business.social.facebook, business.social.yelp],
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: 52, bestRating: "5" },
+  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: 53, bestRating: "5" },
 };
 
 export default function HomePage() {

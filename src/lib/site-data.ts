@@ -4,7 +4,7 @@
 //
 // Re-sourced 2026-09-18 for the revamp (table: ~/Work/_revamp/orland-automotive/research.md):
 // - Yelp (claimed): services "Verified by Business", hours, About, 10 reviews, dated photos
-// - Google Maps: 4.8 / 52, hours, phone
+// - Google Maps: 4.8 / 52, hours, phone (53 reviews in the Maps embed, 2026-11-08)
 // - Facebook (OTownAuto): intro ("Walkins welcome or book now"), 100% recommend / 27
 // Removed from the old concept: "Since 2021" (a BBB registration date — their "NOW
 // OPEN" sign was photographed Jan 2018), the invented tagline, and services not
@@ -45,7 +45,7 @@ export const hours = [
 export const hoursNote = "Google lists 5 PM every weekday; Yelp lists 5:30 PM Tuesday to Friday. Call if you're cutting it close.";
 
 export const ratings = [
-  { platform: "Google", value: "4.8", count: "52 reviews", href: business.social.google },
+  { platform: "Google", value: "4.8", count: "53 reviews", href: business.social.google },
   { platform: "Yelp", value: "5.0", count: "10 reviews", href: business.social.yelp },
   { platform: "Facebook", value: "100%", count: "recommend · 27 reviews", href: business.social.facebook },
 ];
