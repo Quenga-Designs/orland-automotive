@@ -50,9 +50,8 @@ export default function ServicesPage() {
       <section className="bg-white px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <PackageBoard />
-          <div className="mt-10 grid items-start gap-6 md:grid-cols-3">
+          <div className="mt-10 grid items-start gap-6 md:grid-cols-2">
             <Framed photo={photos.engine} sizes="(min-width: 768px) 360px, 92vw" />
-            <Framed photo={photos.board} sizes="(min-width: 768px) 360px, 92vw" />
             <Framed photo={photos.openDay} sizes="(min-width: 768px) 360px, 92vw" />
           </div>
         </div>

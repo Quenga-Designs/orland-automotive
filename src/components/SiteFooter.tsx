@@ -41,7 +41,7 @@ export function SiteFooter() {
       </div>
       <div className="bg-wall-deep">
         <div className="mx-auto max-w-6xl space-y-2 px-4 py-5 text-xs leading-relaxed text-sign/85 sm:px-6">
-          <p>Photos: from the shop&rsquo;s Facebook page and Yelp listing (owner and customer uploads). Reviews quoted from Yelp and Google with links to the originals.</p>
+          <p>Photos: Orland Automotive and its customers, on Facebook and Yelp. Reviews from Yelp and Google.</p>
           <p>
             Concept demo by{" "}
             <a href="https://quengadesigns.dev/demo?from=orland-automotive" target="_blank" rel="noopener" className="font-bold text-sky underline underline-offset-4">

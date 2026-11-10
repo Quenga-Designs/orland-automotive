@@ -68,7 +68,7 @@ export default function HomePage() {
           <p className="font-script text-3xl text-wall">the performance package</p>
           <h2 id="package-title" className="font-block text-5xl tracking-wide sm:text-6xl">EVERY OIL CHANGE</h2>
           <p className="mt-2 max-w-2xl text-lg text-ink/85">
-            What their board says comes with it. In their words: &ldquo;{theirWords.yelp}&rdquo;
+            &ldquo;{theirWords.yelp}&rdquo;
           </p>
           <div className="mt-8">
             <PackageBoard />

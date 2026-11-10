@@ -42,7 +42,7 @@ export const hours = [
   { day: "Monday – Friday", time: "9 AM – 5 PM" },
   { day: "Saturday & Sunday", time: "Closed" },
 ];
-export const hoursNote = "Google lists 5 PM every weekday; Yelp lists 5:30 PM Tuesday to Friday. Call if you're cutting it close.";
+export const hoursNote = "Call if you're cutting it close.";
 
 export const ratings = [
   { platform: "Google", value: "4.8", count: "53 reviews", href: business.social.google },
@@ -65,7 +65,7 @@ export const board = {
  */
 export const boardPrices = {
   tiers: ["Conventional", "High Mileage", "Synthetic Blend", "Full Synthetic"],
-  note: "Four grades of oil on the board. Prices change with the oil and the car, so the shop quotes them over the phone or at the counter.",
+  note: "Prices change with the oil and the car, so call or ask at the counter for a quote.",
 };
 
 /** Yelp "Services Offered — Verified by Business", grouped. */
@@ -141,35 +141,35 @@ export const photos = {
     alt: "The shop's oxblood-red brick wall with white lettering reading Orland Automotive Oil & Lube, an oil and filter change banner, and a car parked in front under a blue sky.",
     w: 1000,
     h: 1000,
-    caption: "615 Fifth St · Yelp, 2022",
+    caption: "615 Fifth St",
   },
   bay: {
     src: "/photos/shop-bay.webp",
     alt: "Inside the shop: a red classic Corvette with its hood up on a lift, shelves of motor oil behind it.",
     w: 960,
     h: 720,
-    caption: "In the bay · their Facebook",
+    caption: "In the bay",
   },
   openDay: {
     src: "/photos/now-open.webp",
     alt: "The shopfront with a lit NOW OPEN sign above an open roll-up bay door and a car lift inside.",
     w: 960,
     h: 720,
-    caption: "Opening days · Yelp, Jan 2018",
+    caption: "Opening days",
   },
   engine: {
     src: "/photos/intake-gaskets.webp",
     alt: "An engine bay with the intake manifold off, showing fresh blue intake gaskets seated on the cylinder head.",
     w: 900,
     h: 1200,
-    caption: "Under the hood · their Facebook, May 2025",
+    caption: "Under the hood",
   },
   board: {
     src: "/photos/service-board.webp",
     alt: "Their wall board listing the oil change package (change, check/fill, inspect and clean) above the price tiers.",
     w: 750,
     h: 1000,
-    caption: "The package board · Yelp, 2019 (prices since changed)",
+    caption: "The package board",
   },
 };
 
