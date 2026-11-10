@@ -66,7 +66,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${damion.variable} ${passion.variable} ${redhat.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-asphalt text-ink">
-        <div className="sticky top-0 z-50">
+        <div className="relative z-50">
           <ConceptBanner />
         </div>
         <SiteHeader />
