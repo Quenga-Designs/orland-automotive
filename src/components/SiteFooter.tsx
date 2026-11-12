@@ -51,6 +51,7 @@ export function SiteFooter() {
           </p>
         </div>
       </div>
+      <p className="mx-auto max-w-6xl px-5 pb-6 text-xs opacity-80 sm:pb-6">Sample site by Quenga Designs. Photos are from Orland Automotive Oil & Lube&apos;s public pages and will be removed on request.</p>
     </footer>
   );
 }
